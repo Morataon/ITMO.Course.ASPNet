@@ -1,0 +1,71 @@
+﻿@page
+@model ITMO.Course.ASPNet.FinalTask.Pages.Students.AssessmentsModel
+
+@{
+    ViewData["Title"] = "Assessments";
+}
+
+<h1>Оценки</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Student.LastName) @Html.DisplayFor(model => model.Student.FirstName) @Html.DisplayFor(model => model.Student.MiddleName)</h4>
+    <p>@Html.DisplayFor(model => model.Student.Email)</p>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                @Html.HiddenFor(model => model.Student.Id)
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div>
+                    <input type="hidden" asp-for="Assessment" />
+                    <input type="hidden" asp-for="StudentId" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Assessment.Value" class="control-label">Оценка</label>
+                    <input asp-for="Assessment.Value" class="form-control" min="0" max="5" />
+                    <span asp-validation-for="Assessment.Value" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Добавить оценку" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Дата
+                </th>
+                <th>
+                    Оценка
+                </th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Assessments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+</div>
+<div>
+
+    <a asp-page="./Index">К списку студентов</a>
+</div>

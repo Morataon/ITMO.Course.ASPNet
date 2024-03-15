@@ -1,0 +1,15 @@
+﻿@model ITMO.Course.ASPNet.MVC.Lab1.Models.Person
+
+@* @{
+    Layout = "~/Views/_BasicLayout.cshtml";
+} *@
+
+<div>
+    <h1>Здравствуйте, @Model.ToString()!</h1>
+    <p>
+        @Html.ActionLink("На главную", "Index")
+    </p>
+</div>
+
+@{
+}
